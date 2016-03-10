@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Binary Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    < Optional Bootstrap theme >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"-->
+    <style type="text/css">
+    	#res{
+			  background-color : lightgray;
+			  border-style : solid;
+			  width : 81%;
+			  height : 48px;
+			  font-size : 20px;
+			}
+		#btns{
+			  width : 90%;
+			}
+		#btn0, #btn1{
+			  background-color : lightgreen;
+			  color : brown;
+			}
+		#btnClr, #btnEql{
+			  background-color : darkgreen;
+			  color : white;
+			}
+		#btnSum, #btnSub, #btnMul, #btnDiv{
+			  background-color : black;
+			  color : red;
+			}
+		button{
+			  width : 22%;
+			  height : 36px;
+			  font-size : 18px;
+			}
+    </style>
+</head>
+<body>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script-->
+    <input id = "res"></input>
+	<div id = "btns">
+	  	<button id = "btn0" onclick = "dispZero()">0</button>
+	  	<button id = "btn1" onclick = "dispOne()">1</button>
+		<button id = "btnClr" onclick = "clrRes()">C</button>
+		<button id = "btnEql" onclick = "getResult()">=</button>
+		<button id = "btnSum" onclick = "sum()">+</button>
+		<button id = "btnSub" onclick = "sub()">-</button>
+		<button id = "btnMul" onclick = "mul()">*</button>
+		<button id = "btnDiv" onclick = "div()"> /</button>
+	</div>
+<script type="text/javascript">
+	
+	function dispZero(){
+		document.getElementById('res').value += "0";
+	}
+	function dispOne(){
+		document.getElementById('res').value += "1";
+	}
+	function clrRes(){
+		document.getElementById('res').value = "";
+	}
+	function sum(){
+		document.getElementById('res').value += "+";
+	}
+	function sub(){
+		document.getElementById('res').value += "-";
+	}
+	function mul(){
+		document.getElementById('res').value += "*";
+	}
+	function div(){
+		document.getElementById('res').value += "/";
+	}
+	function getResult(){
+		var expression = document.getElementById('res').value;
+		var expArr = expression.split(/[+-\/\*]/);
+		var operand1 = parseInt(expArr[0],2);
+		var operand2 = parseInt(expArr[1],2);
+		var operator = expression[expArr[0].length];
+		console.log(operand1,operand2);
+		console.log(operator);
+		if (operator === '+'){
+			var result = (operand1 + operand2);
+		}
+		else if(operator === '-'){
+			var result = (operand1 - operand2);
+		}
+		else if(operator === '*'){
+			var result = (operand1 * operand2);
+		}
+		else if(operator === '/'){
+			var result = Math.floor(operand1/operand2);
+		}
+		console.log(result);
+		var x = result.toString(2);
+		document.getElementById('res').value = x;
+	}
+</script>
+</body>
+</html>
